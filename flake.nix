@@ -1,8 +1,9 @@
+# https://api.github.com/repos/zen-browser/desktop/releases/latest
 {
   description = "Zen Browser";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable-small";
   };
 
   outputs = {
@@ -11,10 +12,10 @@
   }: let
     system = "x86_64-linux";
 
-    release = builtins.head (builtins.fromJSON (builtins.readFile (pkgs.fetchurl {
-      url = "https://api.github.com/repos/zen-browser/desktop/releases";
-      sha256 = "Yxiw3X8R1qYDeOQZuz8eVTt8Z3iKMJId3TB1e1BebIY=";
-    })));
+    release = builtins.fromJSON (builtins.readFile (pkgs.fetchurl {
+      url = "https://api.github.com/repos/zen-browser/desktop/releases/latest";
+      sha256 = "14mlpdhfqsxcpw5jalr52z2lhiqs14c0banv053a57j0hf01q14b";
+    }));
 
     version = release.tag_name;
 
@@ -78,8 +79,8 @@
         pname = "zen-browser";
 
         src = builtins.fetchTarball {
-          url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.xz";
-          sha256 = "1haf3cki579jmwpdrmkixzslaaxajk5wj2p6sjrmghci1s6gz8cy";
+          url = "https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz";
+          sha256 = "1f5fmvkssckdirncmg7xbf9k68dw7nnrr5sa16abshfxp4n6m6ss";
         };
 
         desktopSrc = ./.;
