@@ -12,13 +12,12 @@
   }: let
     system = "x86_64-linux";
 
-    # release = builtins.fromJSON (builtins.readFile (pkgs.fetchurl {
-    #   url = "https://api.github.com/repos/zen-browser/desktop/releases/latest";
-    #   sha256 = "13873clb14albhjlrk5rmd58ii75p4qhr96736hmp403ibsi24y1";
-    # }));
+    release = builtins.fromJSON (builtins.readFile (pkgs.fetchurl {
+      url = "https://api.github.com/repos/zen-browser/desktop/releases/latest";
+      sha256 = "13873clb14albhjlrk5rmd58ii75p4qhr96736hmp403ibsi24y1";
+    }));
 
-    # version = release.tag_name;
-    version = "1.12.2b";
+    version = release.tag_name;
 
     pkgs = import nixpkgs {
       inherit system;
@@ -81,7 +80,7 @@
 
         src = builtins.fetchTarball {
           url = "https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz";
-          sha256 = "13873clb14albhjlrk5rmd58ii75p4qhr96736hmp403ibsi24y1";
+          sha256 = "tc7JTt1WC6VLgya8P3f31OpitMousAxDV3qxGMSplhs";
         };
 
         desktopSrc = ./.;
